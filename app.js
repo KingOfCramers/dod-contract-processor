@@ -34,6 +34,7 @@ allFiles
                 };
 
                 if(isUpperCase(line)){  // Set proper agency ...
+                    agency = line.trim();
                     return;
                 };
 
@@ -52,7 +53,7 @@ allFiles
                     if(ending){
                         forWhat = forWhatLong.substring(0, ending.index);
                     }
-                    console.log({ agency, forWhat, date })
+                    console.log({ agency, forWhat, date, nInt })
                 }
 
               //  console.log({ agency, date, nInt, forWhat })
