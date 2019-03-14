@@ -3,6 +3,8 @@ const path = require("path");
 const util = require("util");
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
+const isUpperCase = require("./util/upperCase");
+
 readDir = util.promisify(fs.readdir);
 readFile = util.promisify(fs.readFile);
 
@@ -22,18 +24,48 @@ allFiles
     .then(async(texts) => {
         let total = 0; largest = 0; dateTotals = [];
 
-        texts.forEach(({ content, date }) => {
-            // let contracts = content.split('\n');
-            let Lockheed = content.match(/BAE Systems/g)
-            let n = content.match(/\$([0-9.,]+)/) // Find value of contract (must build failsafe if contract value is undefined...)
-            let n2 = n[1].replace(/[,.]/g, "");
-            nInt = parseInt(n2);
+        texts.forEach(({ content, date }) => { // For every page of contracts...
+            let contracts = content.split('\n');
+            let agency, forWhat = null; 
+            contracts.forEach((line) => {
+                line = line.trim();
+                if(line === "" | line === "CONTRACTS" | line.startsWith("*")){  // Eliminate duds...
+                    return; 
+                };
+
+                if(isUpperCase(line)){  // Set proper agency ...
+                    return;
+                };
+
+                let n = line.match(/\$([0-9.,]+)/) // Find value of contract...
+                nInt = null;
+
+                if(n){   
+                    n = n[1].replace(/[,.]/g, "");
+                    nInt = parseInt(n);
+                };
+
+                let forWhatIndex = line.search(' for ');
+                if(forWhatIndex){
+                    let forWhatLong = line.substring(forWhatIndex + 5, line.length);
+                    let ending = forWhatLong.match(/\.[\s]/);
+                    if(ending){
+                        forWhat = forWhatLong.substring(0, ending.index);
+                    }
+                    console.log({ agency, forWhat, date })
+                }
+
+              //  console.log({ agency, date, nInt, forWhat })
+
+                // let Lockheed = content.match(/Lockheed/g)
+    
+                // if(Lockheed){
+                //     total = total + Lockheed.length;
+                //     console.log(`Lockheed Contract: ${date}, ${nInt}`);
+                // }
 
 
-            if(Lockheed){
-                total = total + Lockheed.length;
-                console.log(nInt);
-            }
+            });
         });
         // console.log(total);
     });
