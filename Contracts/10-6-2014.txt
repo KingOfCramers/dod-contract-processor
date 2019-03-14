@@ -1,0 +1,33 @@
+
+	CONTRACTS
+	  
+
+	AIR FORCE
+	  
+
+	Raytheon Co., Integrated Defense Systems, Sudbury, Massachusetts, has been awarded a $19,502,764 fixed-price-incentive-firm contract for the initial engineering, manufacturing and development phase of the Three-Dimensional Expeditionary Long-Range Radar (3DELRR) program. The 3DELRR program will replace the aging TPS-75 radar system and will be the principal U.S. Air Force long-range, ground-based sensor for detecting, identifying, tracking, and reporting aerial targets for the Joint Force Air Component Commander through the Theater Air Control System. This base contract includes the purchase of three radar systems. The total contract, including all options, is currently estimated at $71,821,520 and includes the procurement of an additional three radar systems, for a total of six radar systems and product support. Work will be performed at Sudbury, Massachusetts, and Andover, Massachusetts, and the current contract award is expected to be completed by Oct. 31, 2018. This award is the result of a competitive acquisition, with three offers received. Fiscal year 2014 research,
+	development, test and evaluation funds in the amount of $11,000,000 are being obligated at the time of award. Air Force Life Cycle Management Center, Theater Battle Control Division, Hanscom Air Force Base, Massachusetts, is the contracting activity (FA8730-15-C-0004).
+	  
+
+	Information Systems Worldwide Corp., Arlington, Virginia, has been awarded a $9,780,495 cost-plus-fixed-fee contract for software and hardware. Contractor will provide research techniques to extract features from open source information available via various platforms, as well as mobile devices and applications. They will also develop prototypes to correlate this data with existing mission data, and create discovery services to enable its information to be efficiently and effectively exploited in an intelligence context. Work will be performed at Arlington, Virginia, and is expected to be completed by April 5, 2017. This award is the result of a competitive acquisition, with 38 offers received. Fiscal 2014 research and development funds in the amount of $579,000 are being obligated at the time of award. Air Force Research Laboratory, Rome, New York, is the contracting activity (FA8750-15-C-0114). 
+
+	L-3 Communications Integrated Systems, Waco, Texas, has been awarded an $8,490,385 modification (P00019) to previously awarded contract FA8625-13-C-6597 for C-27J Australia Continental United States (CONUS) Contractor Logistics Support (CLS). Contractor will incorporate program requirements for the Royal Australian Air Force (RAAF) C-27J FMS Australia CLS for CONUS training. Work will be performed at Waco, Texas, and is expected to be completed by Dec. 31, 2017. This contract involves foreign military sales. Air Force Life Cycle Management Center, Wright-Patterson Air Force Base, Ohio, is the contracting activity.
+	  
+
+	The Charles Stark Draper Laboratory, Cambridge, Massachusetts, has been awarded an $8,124,147 cost-plus-fixed-fee contract for software. Contractor will develop comprehensive software architecture for extracting semantic artifacts from large software corpora and represent these artifacts in a multi-representational database capable of answering both complex graph queries, as well as matrix-based queries. Work will be performed at Cambridge, Massachusetts, and is expected to be complete by Oct. 6, 2018. This award is the result of a competitive acquisition with offers solicited electronically via an open Broad Agency Announcement, with 51 offers received. Fiscal 2014 research, development, test and evaluation funds in the amount of $582,871 are being obligated at the time of award. Air Force Research Laboratory, Rome, New York, is the contracting activity (FA8750-15-C-0242).
+	  
+
+	ARMY
+	  
+
+	Sikorsky Aircraft Corp., Stratford, Connecticut, was awarded a $21,757,443 modification (P00189) to firm-fixed-price contract W58RGZ-12-C-0008 to exercise an option for two UH-60M helicopters for the Federal Bureau of Investigation, increasing the number of aircraft originally contracted for. Fiscal 2014 other procurement funds in the amount of $21,757,443 were obligated at the time of the award. Estimated completion date is Sept. 30, 2015. Work will be performed in Stratford, Connecticut. Army Contracting Command, Redstone Arsenal (Aviation), Redstone Arsenal, Alabama, is the contracting activity.
+	  
+
+	NAVY
+	  
+
+	P&S Construction, Inc.,* North Chelmsford, Massachusetts, is being awarded $17,907,700 for firm-fixed-price task order 0020 under a previously awarded multiple award construction contract (N40192-10-D-2804) to construct hardened structures around existing and new petroleum, oil and lubricants structures. Work also includes expanding the hydrant loop system and providing additional system redundancy. There are four sites in this project: the Andy 1 Intake Manifold; Andy 2 Bulk Storage Pump House; Andy 2 Contingency, Hydrant Pump House; and the Andy 4 Hydrant Loop C and Hydrant Loop B Connection. Work will be performed in Yigo, Guam, and is expected to be completed by March 2016. Fiscal 2014 military construction (Air Force) contract funds in the amount of $17,907,700 are obligated on this award and will not expire at the end of the current fiscal year. Two proposals were received for this task order. The Naval Facilities Engineering Command, Marianas, Guam, is the contracting activity.
+	  
+
+	*Small business
+	  
