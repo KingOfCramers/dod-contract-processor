@@ -24,13 +24,15 @@ allFiles
     })
     .then(async(texts) => {
         let allContracts = [];
-        texts.forEach(({ content, date },uid1) => { // For every page of contracts...
+        texts.forEach(({ content, date }, uid1) => { // For every page of contracts...
             let contracts = content.split('\n');
+            let link = contracts[0].trim();
             let agency = forWhat = fullContract = foreign = value = null;
             contracts.forEach((line, uid2) => {
+                
                 uid = "" + uid1 + uid2;
                 fullContract = line = line.trim();
-                if(line === "" | line === "CONTRACTS" | line.startsWith("*")){  // Eliminate duds...
+                if(line === link | line === "" | line === "CONTRACTS" | line.startsWith("*")){  // Eliminate duds...
                     return; 
                 };
 
@@ -64,7 +66,7 @@ allFiles
                     }
                 };
 
-                allContracts.push({ agency, forWhat, date, value, fullContract, foreign, uid });
+                allContracts.push({ agency, forWhat, date, value, fullContract, foreign, uid, link });
             });
         });
         return allContracts;
@@ -73,7 +75,7 @@ allFiles
         res = JSON.stringify(res);
         await writeFile(path.resolve(__dirname, "contracts.json"), res);
 
-        const fields = ['uid', 'date', 'agency', 'value', 'forWhat', 'foreign', 'fullContract'];
+        const fields = ['uid', 'date', 'agency', 'value', 'forWhat', 'foreign', 'fullContract', 'link'];
         const opts = { fields };
         const transformOpts = { highWaterMark: 16384, encoding: 'utf-8' };
         const input = fs.createReadStream(path.resolve(__dirname, "contracts.json"), { encoding: 'utf8' });
