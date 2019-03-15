@@ -1,7 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const json2csv = require("json2csv").Transform;
+const writeFile = util.promisify(fs.writeFile);
 
 const isUpperCase = require("./util/upperCase");
 
@@ -22,13 +23,13 @@ allFiles
         return texts;
     })
     .then(async(texts) => {
-        let total = 0; largest = 0; dateTotals = [];
-
-        texts.forEach(({ content, date }) => { // For every page of contracts...
+        let allContracts = [];
+        texts.forEach(({ content, date },uid1) => { // For every page of contracts...
             let contracts = content.split('\n');
-            let agency, forWhat = null; 
-            contracts.forEach((line) => {
-                line = line.trim();
+            let agency = forWhat = fullContract = foreign = value = null;
+            contracts.forEach((line, uid2) => {
+                uid = "" + uid1 + uid2;
+                fullContract = line = line.trim();
                 if(line === "" | line === "CONTRACTS" | line.startsWith("*")){  // Eliminate duds...
                     return; 
                 };
@@ -39,34 +40,46 @@ allFiles
                 };
 
                 let n = line.match(/\$([0-9.,]+)/) // Find value of contract...
-                nInt = null;
 
                 if(n){   
                     n = n[1].replace(/[,.]/g, "");
-                    nInt = parseInt(n);
+                    value = parseInt(n);
                 };
 
-                let forWhatIndex = line.search(' for ');
-                if(forWhatIndex){
-                    let forWhatLong = line.substring(forWhatIndex + 5, line.length);
-                    let ending = forWhatLong.match(/\.[\s]/);
-                    if(ending){
-                        forWhat = forWhatLong.substring(0, ending.index);
-                    }
-                    console.log({ agency, forWhat, date, nInt })
+                if(line.includes("foreign")){
+                    foreign = true;
+                } else {
+                    foreign = null;
                 }
 
-              //  console.log({ agency, date, nInt, forWhat })
+                let awardTypes = /( for )|(to (assure|promise|support|promote|contract))/g;
+                let firstSentence = /\.(\s+)[A-Z]/.exec(line) ? line.substring(0, /\.\s/.exec(line).index + 1) : ""; // If we can find first sentence
+                if(firstSentence !== "" && firstSentence.match(awardTypes)){ // And first sentence includes awarding language...
+                    let result, indices = [];
+                    while((result = awardTypes.exec(firstSentence))){ // Check for multiple 'fors'
+                        indices.push(result.index);
+                    };
+                    if(!!indices.length){ // If any fors are found...
+                        forWhat = firstSentence.substring(indices[0], firstSentence.length).trim();
+                    }
+                };
 
-                // let Lockheed = content.match(/Lockheed/g)
-    
-                // if(Lockheed){
-                //     total = total + Lockheed.length;
-                //     console.log(`Lockheed Contract: ${date}, ${nInt}`);
-                // }
-
-
+                allContracts.push({ agency, forWhat, date, value, fullContract, foreign, uid });
             });
         });
-        // console.log(total);
-    });
+        return allContracts;
+    })
+    .then(async(res) => {
+        res = JSON.stringify(res);
+        await writeFile(path.resolve(__dirname, "contracts.json"), res);
+
+        const fields = ['uid', 'date', 'agency', 'value', 'forWhat', 'foreign', 'fullContract'];
+        const opts = { fields };
+        const transformOpts = { highWaterMark: 16384, encoding: 'utf-8' };
+        const input = fs.createReadStream(path.resolve(__dirname, "contracts.json"), { encoding: 'utf8' });
+        const output = fs.createWriteStream(path.resolve(__dirname, "contracts.csv"), { encoding: 'utf8' });
+
+        const newjson2csv = new json2csv(opts, transformOpts);
+        const processor = input.pipe(newjson2csv).pipe(output);
+
+    })
